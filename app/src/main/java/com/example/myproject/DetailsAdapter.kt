@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.list_item.view.*
-
+import android.support.v4.content.ContextCompat.startActivity
 class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
     val listDetails = listOf("Общее","Двигатель","Подвеска и рулевое управление","Трансмиссия","Тормозная система","Электрооборудование")
     override fun getItemCount(): Int {
@@ -32,14 +32,16 @@ class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
             holder.view.car_detail.setBackgroundResource(R.color.cardview_shadow_start_color)
         }
 
-        holder.view.setOnClickListener {
-        }
+
+
+
     }
-
-
-
-
 }
 class CustomViewHolder (val view: View) : RecyclerView.ViewHolder(view) {
-
+    init {
+        view.setOnClickListener {
+            val intent = Intent(view.context,ScndActivity::class.java)
+            view.context.startActivity(intent)
+        }
+    }
 }

@@ -1,9 +1,11 @@
 package com.example.myproject
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val itemDecoration =  DividerItemDecoration(applicationContext,LinearLayoutManager.VERTICAL)
         itemDecoration.setDrawable(ColorDrawable(Color.BLUE))
         list.addItemDecoration(itemDecoration)
-        list.background = ColorDrawable(Color.LTGRAY)
+        list.background = ColorDrawable(Color.BLACK)
 
 
 
