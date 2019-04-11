@@ -27,12 +27,14 @@ class MainActivity : AppCompatActivity() {
         itemDecoration.setDrawable(ColorDrawable(Color.BLUE))
         list.addItemDecoration(itemDecoration)
         list.hasFixedSize()
-        list.background = ColorDrawable(Color.BLACK)
+        list.background = ColorDrawable(Color.WHITE)
+
 
 
 
 
     }
+
 
 
 
