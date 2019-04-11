@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val itemDecoration =  DividerItemDecoration(applicationContext,LinearLayoutManager.VERTICAL)
         itemDecoration.setDrawable(ColorDrawable(Color.BLUE))
         list.addItemDecoration(itemDecoration)
+        list.hasFixedSize()
         list.background = ColorDrawable(Color.BLACK)
 
 
