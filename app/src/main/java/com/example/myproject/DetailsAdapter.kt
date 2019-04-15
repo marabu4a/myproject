@@ -28,10 +28,15 @@ class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
         return CustomViewHolder(Row)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val detailTitle = listDetails.get(position)
         holder.view.car_detail?.text = detailTitle
+        if (position == 0) {
+            holder.view.car_detail?.setBackgroundResource(R.drawable.m5turbp)
+            holder.view.car_detail?.setTextColor(R.color.white)
 
+        }
         holder.view.setOnClickListener {
 
                 val intent = Intent(holder.view.getContext(),ScndActivity::class.java)
@@ -43,6 +48,7 @@ class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
             //view.getContext().startActivity(intent)
 
         }
+
 
 
 
