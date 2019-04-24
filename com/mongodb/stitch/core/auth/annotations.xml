@@ -1,0 +1,5 @@
+<root>
+	<item name='com.mongodb.stitch.core.auth.StitchCredential'>
+		<annotation name='java.lang.Deprecated'/>
+	</item>
+</root>
