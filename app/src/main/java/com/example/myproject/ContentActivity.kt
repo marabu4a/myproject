@@ -17,12 +17,11 @@ import org.json.JSONObject
 import java.io.IOException
 import java.net.URL
 import kotlin.coroutines.CoroutineContext
-val data = mutableListOf<Response>()
+
 class ContentActivity : AppCompatActivity(),CoroutineScope {
     private val rootJob = Job()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + rootJob
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +29,9 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
 
             jsonParse()
 
-                /*val kek = data
-        val xx = findViewById<TextView>(R.id.text_content)
-        for (i in kek) {
+                //val kek = data
+        //val xx = findViewById<TextView>(R.id.text_content)
+        /*for (i in kek) {
                   for (k in i.employees) {
                       xx.append(k.firstname)
                   }
@@ -40,24 +39,25 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
 
         }
         */
+        //xx.append(kek)
 
     }
     private fun jsonParse() = launch  {
-        val url = "https://api.myjson.com/bins/kp9wz"
+        val url = "https://my-project-id-326ba.firebaseio.com/car.json"
         val client = OkHttpClient.Builder().build()
         val request = okhttp3.Request.Builder().url(url).build()
         val response: String = withContext(Dispatchers.IO) {
             client.newCall(request).execute().body()!!.string()
         }
-        val type = object : TypeToken<ArrayList<Response>>() {}
-        val repos = Gson().fromJson<ArrayList<Response>>(response,type.type)
-        data.clear()
-        data.addAll(repos)
+        val type = object : TypeToken<Response>() {}
+        val repos = Gson().fromJson<Response>(response,type.type)
+        val data = repos.text
+        val xx = findViewById<TextView>(R.id.text_content)
+        xx.append(data)
 
     }
 }
-data class Employee(val firstname: String,val age: Int,val mail: String)
-data class Response(val employees: List<Employee>)
+data class Response(val text: String)
 
 
 
