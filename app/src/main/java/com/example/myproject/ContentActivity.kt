@@ -6,12 +6,15 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.TextView
 import com.example.myproject.AppActivity.Companion.db
+import com.example.myproject.AppActivity.Companion.getDatabase
+
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_content.*
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.io.FileOutputStream
@@ -24,17 +27,16 @@ import kotlin.coroutines.CoroutineContext
 
 
 class ContentActivity : AppCompatActivity(),CoroutineScope {
-    private val DB_NAME = "autoarticles.db"
+    private val DB_NAME = "databases/autoarticles.db"
     private val rootJob = Job()
 
-    private var structArticles: DataStructArticles? = db
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + rootJob
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content)
-
         //val db = Room.databaseBuilder(applicationContext,DataStructArticles::class.java,"articles.db").allowMainThreadQueries().build()
         // Асинхронно считаем данные из базы. Получаем запись с идентификатором ноль.
         //structArticles = DataStructArticles.getDatabase(applicationContext)!!
@@ -51,16 +53,18 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
         doAsync {
 
 
-            val artic = db!!.readoutDAO().allStructArticles
-            Log.d("Activity", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            val artic = getDatabase()
+            val tt = artic!!.readoutDAO().getReadoutById(0)
+            text_content.append("vvvvvvvvvv")
             uiThread {
-                text_content.append("--")
-                for (k in artic) {
-                    Log.d("Activity", "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
-                    text_content.append(k.text + "--")
-                }
-                text_content.append("--")
+                text_content.append(tt.text)
+                tt.text = "ggwp"
+                artic.readoutDAO().updateReadout(tt)
+                val vv = artic!!.readoutDAO().getReadoutById(0)
+                text_content.append(vv.text)
+
             }
+
 
         }
 
@@ -89,70 +93,6 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
 
     }
 
-    private fun copyDatabase(context: Context, databaseName: String,destinationPath: String) {
-        /*val dbPath = context.getDatabasePath(databaseName)
-
-        // If the database already exists, return
-        if (dbPath.exists()) {
-            Log.d("Activity", "db Path Exists")
-            return
-        }*/
-
-        // Make sure we have a path to the file
-        //dbPath.parentFile.mkdirs()
-        // Try to copy database file
-        try {
-            val inputStream = context.assets.open("databases/$databaseName");
-            val output = FileOutputStream(destinationPath);
-
-            val buffer = ByteArray(8192)
-            var length: Int
-            length = inputStream.read(buffer, 0, 8192)
-            while (length > 0) {
-                output.write(buffer, 0, length)
-                length = inputStream.read(buffer, 0, 8192)
-            }
-            output.flush()
-            output.close()
-            inputStream.close()
-        } catch (e: IOException) {
-            Log.d("Activity", "Failed to open file", e)
-            e.printStackTrace()
-        }
-
-    }
-
-
-
-    /*private fun DatabaseCopier() {
-        //call method that check if database not exists and copy prepopulated file from assets
-        copyDatabase(applicationContext,"articles.db")
-        mAppDataBase = Room.databaseBuilder(
-            applicationContext,
-            DataStructArticles::class.java!!, "articles.db"
-        )
-            .addMigrations(DataStructArticles.MIGRATION_1_2)
-            .build()
-    }*/
-
-
-
-
-
-
-
-    private class GetDataFromDb(var context: ContentActivity) : AsyncTask<Void, Void, List<StructArticles>>() {
-        override fun doInBackground(vararg params: Void?): List<StructArticles> {
-            return context.structArticles!!.readoutDAO().allStructArticles
-        }
-        override fun onPostExecute(articlesList: List<StructArticles>?) {
-            if (articlesList!!.size > 0) {
-                for (i in 0..articlesList.size - 1) {
-                    context.text_content.append(articlesList[i].title)
-                }
-            }
-        }
-    }
 }
 data class Response(val text: String)
 

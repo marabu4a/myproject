@@ -10,7 +10,7 @@ import java.io.IOException
 
 class DatabaseCopier private constructor() {
 
-    val roomDatabase: DataStructArticles
+    val roomDatabase: AppActivity.DataStructArticles
 
     private object Holder {
         @SuppressLint("StaticFieldLeak")
@@ -22,27 +22,28 @@ class DatabaseCopier private constructor() {
         copyAttachedDatabase(appContext!!, DATABASE_NAME)
         roomDatabase = Room.databaseBuilder(
             appContext!!,
-            DataStructArticles::class.java!!, DATABASE_NAME
+            AppActivity.DataStructArticles::class.java, DATABASE_NAME
         )
-            .addMigrations(DataStructArticles.MIGRATION_1_2)
+            .allowMainThreadQueries().addMigrations(AppActivity.DataStructArticles.MIGRATION_1_2)
             .build()
     }
 
 
     private fun copyAttachedDatabase(context: Context, databaseName: String) {
         val dbPath = context.getDatabasePath(databaseName)
-
+        Log.d("Activity", dbPath.toString())
         // If the database already exists, return
         if (dbPath.exists()) {
+            Log.d("Activity", "db Path Existsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
             return
         }
 
         // Make sure we have a path to the file
-        dbPath.getParentFile().mkdirs()
+        dbPath.parentFile.mkdirs()
 
         // Try to copy database file
         try {
-            val inputStream = context.getAssets().open("databases/$databaseName")
+            val inputStream = context.assets.open("databases/$databaseName")
             val output = FileOutputStream(dbPath)
 
             val buffer = ByteArray(8192)
@@ -66,7 +67,7 @@ class DatabaseCopier private constructor() {
 
     companion object {
         private val TAG = DatabaseCopier::class.java.simpleName
-        private const val DATABASE_NAME = "autoarticles.db"
+        private const val DATABASE_NAME = "autoarticlesss.db"
         private var appContext: Context? = null
 
         fun getInstance(context: Context): DatabaseCopier {
