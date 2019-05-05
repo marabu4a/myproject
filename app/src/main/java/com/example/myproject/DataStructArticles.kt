@@ -3,11 +3,6 @@ import android.app.Application
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.*
 import android.arch.persistence.room.migration.Migration
-import android.content.Context
-import android.util.Log
-import java.io.FileOutputStream
-import java.io.IOException
-import com.huma.room_for_asset.RoomAsset
 
 
 class AppActivity: Application() {
@@ -34,14 +29,14 @@ class AppActivity: Application() {
     @Dao
     interface ReadoutModelDao {
 
-        @get:Query("SELECT * FROM articles")            // "get:" означает применение аннотации "Query" к геттеру (функцию геттера для переменной allReadoutItems вручную не пишем)
-        val allStructArticles: List<StructArticles>             // Обёртываем возвращаемое значение LiveData<...> чтобы отслеживать изменения в базе. При изменении данных будут рассылаться уведомления
+        @get:Query("SELECT * FROM articles")
+        val allStructArticles: List<StructArticles>
 
         @Query("SELECT * FROM articles WHERE id = :id")
         fun getReadoutById(id: Long): StructArticles
 
         @Query("SELECT * FROM articles WHERE title = :title")
-        fun getReadoutByAddr(title: String): List<StructArticles>
+        fun getReadoutByAddr(title: String): StructArticles
 
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         fun addReadout(readoutModel: StructArticles)

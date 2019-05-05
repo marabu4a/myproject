@@ -1,10 +1,11 @@
 package com.example.myproject
 
-import android.graphics.ColorSpace
-import android.support.v7.app.AppCompatActivity
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_scnd.*
 val EXTRA_POS = "my_item_position"
@@ -20,6 +21,9 @@ class ScndActivity : AppCompatActivity() {
         categoryView.hasFixedSize()
         val clAdapter = DetailsCategoryAdapter(categoryList)
         categoryView.adapter = clAdapter
+        val itemDecoration =  DividerItemDecoration(applicationContext,LinearLayoutManager.VERTICAL)
+        itemDecoration.setDrawable(ColorDrawable(Color.BLUE))
+        categoryView.addItemDecoration(itemDecoration)
     }
     fun addCategory() {
         categoryList.add(Model("Устройство двигателей внутреннего сгорания",R.drawable.dvs))

@@ -1,24 +1,17 @@
 package com.example.myproject
-import android.content.Context
-import android.os.AsyncTask
+
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.TextView
-import com.example.myproject.AppActivity.Companion.db
 import com.example.myproject.AppActivity.Companion.getDatabase
-
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_content.*
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import java.io.FileOutputStream
-import java.io.IOException
 import kotlin.coroutines.CoroutineContext
 
 
@@ -27,7 +20,6 @@ import kotlin.coroutines.CoroutineContext
 
 
 class ContentActivity : AppCompatActivity(),CoroutineScope {
-    private val DB_NAME = "databases/autoarticles.db"
     private val rootJob = Job()
 
 
@@ -60,7 +52,8 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
                 text_content.append(tt.text)
                 tt.text = "ggwp"
                 artic.readoutDAO().updateReadout(tt)
-                val vv = artic!!.readoutDAO().getReadoutById(0)
+                val vv = artic!!.readoutDAO().getReadoutByAddr("Устройство двигателей внутреннего сгорания")
+
                 text_content.append(vv.text)
 
             }
@@ -78,23 +71,24 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
     }
 
     private fun jsonParse() = launch {
-        val url = "https://my-project-id-326ba.firebaseio.com/car.json"
+        val url = "https://my-project-id-326ba.firebaseio.com/Тест.json"
         val client = OkHttpClient.Builder().build()
         val request = Request.Builder().url(url).build()
         val response: String = withContext(Dispatchers.IO) {
             client.newCall(request).execute().body()!!.string()
         }
-        val type = object : TypeToken<Response>() {}
-        val repos = Gson().fromJson<Response>(response, type.type)
-        //val data = repos.text
+        val type = object : TypeToken<Responsee>() {}
+        val repos = Gson().fromJson<Responsee>(response, type.type)
+        val data = repos.text
         val xx = findViewById<TextView>(R.id.text_content)
-        //xx.append(data)
+        xx.append(data)
+
 
 
     }
 
 }
-data class Response(val text: String)
+data class Responsee(val text: String)
 
 
 

@@ -1,23 +1,30 @@
 package com.example.myproject
-import android.content.Intent
 import android.annotation.SuppressLint
-import android.content.Context
-import android.support.v4.content.ContextCompat.startActivity
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.view.*
-import android.support.v4.content.ContextCompat.startActivity
-import android.content.Intent.getIntent
-import android.support.v4.content.ContextCompat.startActivity
 
 
 
 class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
+    val listDetails = listOf(
+        "Двигатель",
+        "Подвеска",
+        "Трансмиссия",
+        "Тормозная система",
+        "Электрооборудование",
+        "Рулевое управление",
+        "Топливная система",
+        "Датчики",
+        "Система охлаждения",
+        "Система зажигания")
 
-    val listDetails = listOf("Двигатель","Подвеска и рулевое управление","Трансмиссия","Тормозная система","Электрооборудование")
+
+
     override fun getItemCount(): Int {
         return listDetails.size
     }
@@ -31,12 +38,10 @@ class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val detailTitle = listDetails.get(position)
+        val imgName = "file:///android_asset/maincategories/engine.png"
+        Picasso.get().load(imgName).into(holder.view.car_detail_image)
         holder.view.car_detail?.text = detailTitle
-        if (position == 0) {
-            holder.view.car_detail?.setBackgroundResource(R.drawable.m5turbp)
-            holder.view.car_detail?.setTextColor(R.color.white)
-
-        }
+        holder.view.annot?.text = "заглушка,заглушка"
         holder.view.setOnClickListener {
 
                 val intent = Intent(holder.view.getContext(),ScndActivity::class.java)
