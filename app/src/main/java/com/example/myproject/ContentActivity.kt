@@ -2,6 +2,8 @@ package com.example.myproject
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.myproject.AppActivity.Companion.getDatabase
 import com.google.gson.Gson
@@ -29,19 +31,11 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content)
-        //val db = Room.databaseBuilder(applicationContext,DataStructArticles::class.java,"articles.db").allowMainThreadQueries().build()
-        // Асинхронно считаем данные из базы. Получаем запись с идентификатором ноль.
-        //structArticles = DataStructArticles.getDatabase(applicationContext)!!
-        //val rec = structArticles?.readoutDAO()?.getReadoutById(1)     // Считаем нулевую запись. Результат последнего выражения потока возвращается в переменную r
+        article_view.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false)
+        val content_adapter = ContentAdapter()
+        article_view.adapter = content_adapter
 
-        // Запустить и забыть. Поток в потоке интерфейса UI. Ждём данные и выводим их в интерфейс.
-        // Подождём результата.
-                             // Выведем в интерфейс.
-
-
-        //jsonParse()
-        //DatabaseCopier()
-        //GetDataFromDb(ContentActivity()).execute()
+          //jsonParse()
         doAsync {
 
 

@@ -23,9 +23,6 @@ class MainActivity : AppCompatActivity() {
         adapter = DetailsAdapter()
         list.layoutManager = GridLayoutManager(applicationContext,2) as RecyclerView.LayoutManager?
         list.adapter = adapter
-        //val itemDecoration =  DividerItemDecoration(applicationContext,GridLayoutManager.VERTICAL)
-        //itemDecoration.setDrawable(ColorDrawable(Color.BLUE))
-        //list.addItemDecoration(itemDecoration)
         list.hasFixedSize()
         list.background = ColorDrawable(Color.BLUE)
 
@@ -34,13 +31,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    }
-
-    fun loadImageFromAsset(name: String): Drawable? {
-
-        val stream = applicationContext.assets.open("databases/$name")
-        val d = Drawable.createFromStream(stream, null)
-        return d
     }
 
 

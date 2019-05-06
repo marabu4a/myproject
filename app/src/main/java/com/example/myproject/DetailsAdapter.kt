@@ -47,26 +47,8 @@ class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
                 val intent = Intent(holder.view.getContext(),ScndActivity::class.java)
                 intent.putExtra(EXTRA_POS,position)
                 holder.view.getContext().startActivity(intent)
-
-                //val intent = Intent(view.getContext(), HotelViewActivity::class.java)
-            //intent.putExtra(HotelViewActivity.EXTRA_POS, position)
-            //view.getContext().startActivity(intent)
-
         }
-
-
-
-
     }
 }
 class CustomViewHolder (val view: View) : RecyclerView.ViewHolder(view) {
-    /*init {
-        view.setOnClickListener {
-            val intent = Intent(view.context,ScndActivity::class.java)
-            view.context.startActivity(intent)
-
-
-        }
-    }
-    */
 }
