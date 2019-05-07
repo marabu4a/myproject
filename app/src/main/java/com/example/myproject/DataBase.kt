@@ -18,7 +18,6 @@ class DatabaseCopier private constructor() {
     }
 
     init {
-        //call method that check if database not exists and copy prepopulated file from assets
         copyAttachedDatabase(appContext!!, DATABASE_NAME)
         roomDatabase = Room.databaseBuilder(
             appContext!!,
@@ -34,7 +33,7 @@ class DatabaseCopier private constructor() {
         Log.d("Activity", dbPath.toString())
         // If the database already exists, return
         if (dbPath.exists()) {
-            Log.d("Activity", "db Path Existsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
+            Log.d("Activity", "db Path Exists")
             return
         }
 

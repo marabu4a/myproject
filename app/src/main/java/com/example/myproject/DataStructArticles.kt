@@ -28,7 +28,6 @@ class AppActivity: Application() {
     )
     @Dao
     interface ReadoutModelDao {
-
         @get:Query("SELECT * FROM articles")
         val allStructArticles: List<StructArticles>
 

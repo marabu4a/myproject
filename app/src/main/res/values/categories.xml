@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="categories">
+		<item>Двигатель</item>
+		<item>Подвеска</item>
+		<item>Трансмиссия</item>
+		<item>Тормозная система</item>
+		<item>Электрооборудование</item>
+		<item>Рулевое управление</item>
+		<item>Топливная система</item>
+		<item>Датчики</item>
+		<item>Система охлаждения</item>
+		<item>Система зажигания</item>
+	</string-array>
+</resources>

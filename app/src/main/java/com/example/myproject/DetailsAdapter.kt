@@ -9,8 +9,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.view.*
 
 
-
-class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
+class DetailsAdapter(array: Array<String>) : RecyclerView.Adapter<CustomViewHolder>() {
     val listDetails = listOf(
         "Двигатель",
         "Подвеска",
@@ -22,8 +21,9 @@ class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
         "Датчики",
         "Система охлаждения",
         "Система зажигания")
+    val arrayy = array
 
-
+    val categories = R.array.categories
 
     override fun getItemCount(): Int {
         return listDetails.size
@@ -37,7 +37,7 @@ class DetailsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val detailTitle = listDetails.get(position)
+        val detailTitle = arrayy.get(position)
         val imgName = "file:///android_asset/maincategories/engine.png"
         Picasso.get().load(imgName).into(holder.view.car_detail_image)
         holder.view.car_detail?.text = detailTitle

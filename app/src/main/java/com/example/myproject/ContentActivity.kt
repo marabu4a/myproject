@@ -1,20 +1,20 @@
 package com.example.myproject
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
-import android.widget.TextView
-import com.example.myproject.AppActivity.Companion.getDatabase
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_content.*
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import kotlin.coroutines.CoroutineContext
+
+
 
 
 
@@ -35,8 +35,10 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
         val content_adapter = ContentAdapter()
         article_view.adapter = content_adapter
 
+
+
           //jsonParse()
-        doAsync {
+            /*doAsync {
 
 
             val artic = getDatabase()
@@ -53,7 +55,7 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
             }
 
 
-        }
+        }*/
 
 
 
@@ -65,7 +67,7 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
     }
 
     private fun jsonParse() = launch {
-        val url = "https://my-project-id-326ba.firebaseio.com/Тест.json"
+        val url = "https://my-project-id-326ba.firebaseio.com/Что здесь.json"
         val client = OkHttpClient.Builder().build()
         val request = Request.Builder().url(url).build()
         val response: String = withContext(Dispatchers.IO) {
@@ -74,11 +76,17 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
         val type = object : TypeToken<Responsee>() {}
         val repos = Gson().fromJson<Responsee>(response, type.type)
         val data = repos.text
-        val xx = findViewById<TextView>(R.id.text_content)
-        xx.append(data)
 
 
 
+
+    }
+    private fun isNetworkAvailable(): Boolean {
+        val cm = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return if (cm is ConnectivityManager) {
+            val activeNetwork = cm.activeNetworkInfo
+            activeNetwork?.isConnected ?: false
+        } else false
     }
 
 }
