@@ -1,5 +1,6 @@
 package com.example.myproject
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -81,6 +82,7 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
 
 
     }
+    @SuppressLint("MissingPermission")
     private fun isNetworkAvailable(): Boolean {
         val cm = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return if (cm is ConnectivityManager) {

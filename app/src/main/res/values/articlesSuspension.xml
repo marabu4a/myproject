@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="articlesSuspension">
+		<item>Общее устройство подвески</item>
+		<item>Амортизатор</item>
+		<item>Пружины</item>
+		<item>Стабилизатор поперечной устойчивости</item>
+		<item>Втулка стабилизатора</item>
+		<item>Ступица</item>
+		<item>Все о дисках</item>
+		<item>Летняя и зимняя резина</item>
+	</string-array>
+</resources>

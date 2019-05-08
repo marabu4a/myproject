@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="articlesEngine">
+		<item>Устройство двигателя</item>
+		<item>Двигатель внутреннего сгорания</item>
+		<item>Дизельный двигатель</item>
+		<item>Система очистки воздуха.Воздушный фильтр</item>
+		<item>Выхлопная система</item>
+		<item>Механизм газораспределения</item>
+		<item>Система смазки.Масляной фильтр</item>
+	</string-array>
+</resources>

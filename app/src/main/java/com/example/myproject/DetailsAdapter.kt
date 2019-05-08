@@ -10,19 +10,7 @@ import kotlinx.android.synthetic.main.list_item.view.*
 
 
 class DetailsAdapter(array: Array<String>) : RecyclerView.Adapter<CustomViewHolder>() {
-    val listDetails = listOf(
-        "Двигатель",
-        "Подвеска",
-        "Трансмиссия",
-        "Тормозная система",
-        "Электрооборудование",
-        "Рулевое управление",
-        "Топливная система",
-        "Датчики",
-        "Система охлаждения",
-        "Система зажигания")
     val arrayy = array
-
     val categories = R.array.categories
 
     override fun getItemCount(): Int {

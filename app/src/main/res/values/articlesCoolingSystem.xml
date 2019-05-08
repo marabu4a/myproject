@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+		<string-array name="articlesCoolingSystem">
+			<item>Принцип работы системы охлаждения</item>
+			<item>Радиатор</item>
+			<item>Термостат</item>
+			<item>Расширительный бачок</item>
+			<item>Центробежный насос</item>
+			<item>Вентилятор радиатора</item>
+		</string-array>
+</resources>

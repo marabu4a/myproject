@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="articlesTransmission">
+		<item>Общее устройство МКПП</item>
+		<item>Двухвальные и трёхвальные МКП</item>
+		<item>Количество ступеней</item>
+		<item>Синхронизированные и несинхронизированные МКП</item>
+		<item>Общее устройство АКПП</item>
+		<item>Гидротрансформатор</item>
+		<item>Общее устройство РКПП</item>
+		<item>КП с двумя сцеплениями</item>
+		<item>Принциц работы</item>
+	</string-array>
+</resources>

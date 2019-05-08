@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="articlesIgnitionSystem">
+		<item>Виды систем зажигания</item>
+		<item>Свечи зажигания</item>
+		<item>Катушки зажигания</item>
+		<item>Устройство датчика Холла</item>
+	</string-array>
+</resources>

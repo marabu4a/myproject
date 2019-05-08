@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     var adapter:DetailsAdapter?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val array = applicationContext.resources.getStringArray(R.array.categories)
 
         setContentView(R.layout.activity_main)
         adapter = DetailsAdapter(array)

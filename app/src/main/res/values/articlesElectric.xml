@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="articlesElectric">
+		<item>Аккумулятор</item>
+		<item>Стартер</item>
+		<item>Генератор</item>
+		<item>Лампы освещения</item>
+		<item>Бортовой компьютер</item>
+		<item>Подушки безопасности</item>
+		<item>Другое электрооборудование</item>
+	</string-array>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="articlesFuelSystem">
+		<item>Принцип работы топливных систем</item>
+		<item>Датчик уровня топлива</item>
+		<item>Топливный бак</item>
+		<item>Топливный фильтр</item>
+		<item>Адсорбер</item>
+		<item>Форсунки.Что это и как устроено?</item>
+		<item>Дроссельная заслонка</item>
+		<item>Система курсовой устойчивости(ESC)</item>
+		<item>Топливный насос</item>
+		<item>Система впрыска бензиновых и дизельных двигателей</item>
+	</string-array>
+</resources>
