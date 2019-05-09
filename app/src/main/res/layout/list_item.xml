@@ -24,9 +24,9 @@
                     android:gravity="center"
                     android:padding="10dp">
 
-              <ImageView android:layout_width="110dp"
+              <ImageView android:layout_width="100dp"
                     android:id="@+id/car_detail_image"
-                    android:layout_height="110dp"
+                    android:layout_height="100dp"
 
               />
               <TextView

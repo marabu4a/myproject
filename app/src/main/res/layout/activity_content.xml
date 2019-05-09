@@ -8,7 +8,7 @@
 		tools:context="com.example.myproject.ContentActivity">
 		<android.support.v7.widget.RecyclerView android:layout_width="match_parent"
 												android:id="@+id/article_view"
-												android:layout_height="wrap_content"
+												android:layout_height="0dp"
 												app:layout_constraintEnd_toEndOf="parent"
 												app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
 												app:layout_constraintBottom_toBottomOf="parent">

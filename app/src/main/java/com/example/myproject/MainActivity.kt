@@ -17,9 +17,10 @@ class MainActivity : AppCompatActivity() {
     var adapter:DetailsAdapter?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val categories = applicationContext.resources.getStringArray(R.array.categories)
+        val categoriesannot = applicationContext.resources.getStringArray(R.array.categoriesAnnotation)
         setContentView(R.layout.activity_main)
-        adapter = DetailsAdapter(array)
+        adapter = DetailsAdapter(categories,categoriesannot)
         list.layoutManager = GridLayoutManager(applicationContext,2) as RecyclerView.LayoutManager?
         list.adapter = adapter
         list.hasFixedSize()

@@ -9,12 +9,11 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.view.*
 
 
-class DetailsAdapter(array: Array<String>) : RecyclerView.Adapter<CustomViewHolder>() {
+class DetailsAdapter(array: Array<String>,array1: Array<String>) : RecyclerView.Adapter<CustomViewHolder>() {
     val arrayy = array
-    val categories = R.array.categories
-
+    val annot = array1
     override fun getItemCount(): Int {
-        return listDetails.size
+        return arrayy.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -26,10 +25,10 @@ class DetailsAdapter(array: Array<String>) : RecyclerView.Adapter<CustomViewHold
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val detailTitle = arrayy.get(position)
-        val imgName = "file:///android_asset/maincategories/engine.png"
-        Picasso.get().load(imgName).into(holder.view.car_detail_image)
+        val detailAnnot = annot.get(position)
+        Picasso.get().load("file:///android_asset/maincategories/category-" + position.toString() + ".png").into(holder.view.car_detail_image)
         holder.view.car_detail?.text = detailTitle
-        holder.view.annot?.text = "заглушка,заглушка"
+        holder.view.annot?.text = detailAnnot
         holder.view.setOnClickListener {
 
                 val intent = Intent(holder.view.getContext(),ScndActivity::class.java)

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="categoriesAnnotation">
+		<item>Устройство,выхлоп и т.д.</item>
+		<item>Амортизатор,пружины и т.д.</item>
+		<item>Всё о АКПП,МКПП и т.д.</item>
+		<item>Колодки,ABS,TCS и др.</item>
+		<item>Стартер,генератор и др.</item>
+		<item>Всё о рулевой колонке</item>
+		<item>Адсорбер,бак,фильтр и т.д.</item>
+		<item>Датчик скорости,ABS и др.</item>
+		<item>Радиатор,термостат и т.д.</item>
+		<item>Свечи,катушки зажигания</item>
+	</string-array>
+</resources>

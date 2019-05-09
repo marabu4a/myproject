@@ -24,7 +24,8 @@ import kotlin.coroutines.CoroutineContext
 
 class ContentActivity : AppCompatActivity(),CoroutineScope {
     private val rootJob = Job()
-
+    var repos: Responsee? = null
+    var strings: ArrayList<String> = ArrayList()
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + rootJob
@@ -33,9 +34,10 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content)
         article_view.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false)
-        val content_adapter = ContentAdapter()
-        article_view.adapter = content_adapter
+        jsonParse()
 
+        val contentAdapter = ContentAdapter(strings)
+        article_view.adapter = contentAdapter
 
 
           //jsonParse()
@@ -68,19 +70,21 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
     }
 
     private fun jsonParse() = launch {
-        val url = "https://my-project-id-326ba.firebaseio.com/Что здесь.json"
+        val url = "https://my-project-id-326ba.firebaseio.com/Устройство двигателя.json"
         val client = OkHttpClient.Builder().build()
         val request = Request.Builder().url(url).build()
         val response: String = withContext(Dispatchers.IO) {
             client.newCall(request).execute().body()!!.string()
         }
         val type = object : TypeToken<Responsee>() {}
-        val repos = Gson().fromJson<Responsee>(response, type.type)
-        val data = repos.text
-
-
-
-
+        repos = Gson().fromJson<Responsee>(response, type.type)
+        strings.add(repos!!.title)
+        strings.add(repos!!.text0)
+        strings.add(repos!!.text1)
+        strings.add(repos!!.text2)
+        strings.add(repos!!.text3)
+        strings.add(repos!!.text4)
+        strings.add(repos!!.text5)
     }
     @SuppressLint("MissingPermission")
     private fun isNetworkAvailable(): Boolean {
@@ -92,7 +96,7 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
     }
 
 }
-data class Responsee(val text: String)
+data class Responsee(val text0: String,val text1: String,val text2: String,val text3: String,val text4: String,val text5: String,val title: String)
 
 
 
