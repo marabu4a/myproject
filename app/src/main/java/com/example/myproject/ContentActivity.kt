@@ -16,12 +16,6 @@ import okhttp3.Request
 import kotlin.coroutines.CoroutineContext
 
 
-
-
-
-
-
-
 class ContentActivity : AppCompatActivity(),CoroutineScope {
     private val rootJob = Job()
     private var repos: Responsee? = null

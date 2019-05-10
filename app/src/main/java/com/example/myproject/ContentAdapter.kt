@@ -1,6 +1,7 @@
 package com.example.myproject
 
 import android.support.v7.widget.RecyclerView
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,10 +24,12 @@ class ContentAdapter(list:List<String>): RecyclerView.Adapter<ContentRecyclerVie
         val now = temp.get(position)
         if (now[0] == 'f') {
             println(now)
-            Picasso.get().load("\"" + now + "\"").into(holder.view.image_content)
+            Picasso.get().load(now).into(holder.view.image_content)
+            println("\"" + now + "\"")
         }
         else {
             holder.view.content.text = now
+            holder.view.content.movementMethod = ScrollingMovementMethod()
         }
         }
 
