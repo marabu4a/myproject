@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.article.view.*
 
-class ContentAdapter(list:ArrayList<String>): RecyclerView.Adapter<ContentRecyclerView>() {
-    val temp = list
+class ContentAdapter(list:List<String>): RecyclerView.Adapter<ContentRecyclerView>() {
+    private val temp = list
     override fun getItemCount(): Int {
         return temp.size
     }
@@ -22,12 +22,12 @@ class ContentAdapter(list:ArrayList<String>): RecyclerView.Adapter<ContentRecycl
     override fun onBindViewHolder(holder: ContentRecyclerView, position: Int) {
         val now = temp.get(position)
         if (now[0] == 'f') {
-            Picasso.get().load(now).into(holder.view.image_content)
+            println(now)
+            Picasso.get().load("\"" + now + "\"").into(holder.view.image_content)
         }
         else {
             holder.view.content.text = now
         }
-
         }
 
     }

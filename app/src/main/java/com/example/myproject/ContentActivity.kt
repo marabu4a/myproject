@@ -24,8 +24,8 @@ import kotlin.coroutines.CoroutineContext
 
 class ContentActivity : AppCompatActivity(),CoroutineScope {
     private val rootJob = Job()
-    var repos: Responsee? = null
-    var strings: ArrayList<String> = ArrayList()
+    private var repos: Responsee? = null
+    private var article_list: List<String>? = null
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + rootJob
@@ -36,8 +36,7 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
         article_view.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false)
         jsonParse()
 
-        val contentAdapter = ContentAdapter(strings)
-        article_view.adapter = contentAdapter
+
 
 
           //jsonParse()
@@ -69,7 +68,7 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
 
     }
 
-    private fun jsonParse() = launch {
+    fun jsonParse() = launch {
         val url = "https://my-project-id-326ba.firebaseio.com/Устройство двигателя.json"
         val client = OkHttpClient.Builder().build()
         val request = Request.Builder().url(url).build()
@@ -78,13 +77,10 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
         }
         val type = object : TypeToken<Responsee>() {}
         repos = Gson().fromJson<Responsee>(response, type.type)
-        strings.add(repos!!.title)
-        strings.add(repos!!.text0)
-        strings.add(repos!!.text1)
-        strings.add(repos!!.text2)
-        strings.add(repos!!.text3)
-        strings.add(repos!!.text4)
-        strings.add(repos!!.text5)
+        article_list = listOf(repos!!.title,repos!!.text0,repos!!.text1,repos!!.text2,repos!!.text3,repos!!.text4,repos!!.text5)
+        runOnUiThread {
+            article_view.adapter = ContentAdapter(article_list!!)
+        }
     }
     @SuppressLint("MissingPermission")
     private fun isNetworkAvailable(): Boolean {
