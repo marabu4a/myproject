@@ -1,6 +1,10 @@
 package com.example.myproject
 
+import android.os.Build
+import android.support.annotation.RequiresApi
+import android.support.v4.text.HtmlCompat
 import android.support.v7.widget.RecyclerView
+import android.text.Html
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -21,15 +25,16 @@ class ContentAdapter(list:List<String>): RecyclerView.Adapter<ContentRecyclerVie
     }
 
     override fun onBindViewHolder(holder: ContentRecyclerView, position: Int) {
-        val now = temp.get(position)
-        if (now[0] == 'f') {
-            println(now)
-            Picasso.get().load(now).into(holder.view.image_content)
-            println("\"" + now + "\"")
+        val now = temp[position]
+        if (position == 0) {
+
+            holder.view.content.text = HtmlCompat.fromHtml(now,0)
+            holder.view.content.movementMethod = ScrollingMovementMethod()
         }
         else {
             holder.view.content.text = now
             holder.view.content.movementMethod = ScrollingMovementMethod()
+            holder.view.title_article.movementMethod = ScrollingMovementMethod()
         }
         }
 
