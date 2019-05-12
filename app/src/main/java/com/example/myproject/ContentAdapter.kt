@@ -1,16 +1,12 @@
 package com.example.myproject
 
-import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.v4.text.HtmlCompat
 import android.support.v7.widget.RecyclerView
-import android.text.Html
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.article.view.*
+import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter
 
 class ContentAdapter(list:List<String>): RecyclerView.Adapter<ContentRecyclerView>() {
     private val temp = list
@@ -28,14 +24,11 @@ class ContentAdapter(list:List<String>): RecyclerView.Adapter<ContentRecyclerVie
         val now = temp[position]
         if (position == 0) {
 
-            holder.view.content.text = HtmlCompat.fromHtml(now,0)
-            holder.view.content.movementMethod = ScrollingMovementMethod()
+            holder.view.html_text.setHtml(now, HtmlHttpImageGetter(holder.view.html_text))
+
+            holder.view.html_text.movementMethod = ScrollingMovementMethod()
         }
-        else {
-            holder.view.content.text = now
-            holder.view.content.movementMethod = ScrollingMovementMethod()
-            holder.view.title_article.movementMethod = ScrollingMovementMethod()
-        }
+
         }
 
     }

@@ -5,7 +5,12 @@
 		xmlns:app="http://schemas.android.com/apk/res-auto"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:padding="12dp"
 		tools:context="com.example.myproject.ContentActivity">
+	<TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/texttest"
+			  app:layout_constraintStart_toStartOf="parent"
+			  android:textAppearance="@android:style/TextAppearance.Medium"
+			  app:layout_constraintEnd_toEndOf="parent" tools:ignore="MissingConstraints"/>
 		<android.support.v7.widget.RecyclerView android:layout_width="match_parent"
 												android:id="@+id/article_view"
 												android:layout_height="0dp"

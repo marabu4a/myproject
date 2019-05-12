@@ -45,4 +45,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile "org.jetbrains.anko:anko:0.10.4"
     implementation 'com.squareup.picasso:picasso:2.71828'
+    compile 'org.sufficientlysecure:html-textview:3.2'
+
 }
