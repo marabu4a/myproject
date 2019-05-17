@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id = "@+id/engine" android:title = "Двигатель" android:icon="@drawable/category0"/>
+	<item android:id = "@+id/suspension" android:title = "Подвеска" android:icon="@drawable/category1"/>
+	<item android:id = "@+id/transmission" android:title = "Транмиссия" android:icon="@drawable/category2"/>
+	<item android:id = "@+id/brakeSystem" android:title = "Тормозная система" android:icon="@drawable/category3"/>
+	<item android:id = "@+id/electric" android:title = "Электрооборудование" android:icon="@drawable/category4"/>
+	<item android:id = "@+id/wheel" android:title = "Рулевое управление" android:icon="@drawable/category5"/>
+	<item android:id = "@+id/fuel" android:title  = "Топливная система" android:icon="@drawable/category6"/>
+	<item android:id = "@+id/sensors" android:title = "Датчики" android:icon="@drawable/category7"/>
+	<item android:id = "@+id/cool" android:title = "Система охлаждения" android:icon="@drawable/category8"/>
+	<item android:id="@+id/igni" android:title="Система зажигания" android:icon="@drawable/category9"/>
+</menu>

@@ -1,28 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.DrawerLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/testblue"
+        android:id="@+id/drawer1"
         tools:context="com.example.myproject.ScndActivity">
-    <android.support.v7.widget.CardView
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/cat"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:cardCornerRadius="4dp"
-            android:padding="8dp"
-            app:cardBackgroundColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent">
-    <android.support.v7.widget.RecyclerView
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/categoryView" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-    </android.support.v7.widget.CardView>
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent" android:orientation="vertical">
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="?attr/actionBarSize" xmlns:app="http://schemas.android.com/apk/res-auto"
+                                           android:background="@color/colorPrimary"
+                                           android:id="@+id/toolbar3"
+                                           android:minHeight="?attr/actionBarSize"
+                                           app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                                           tools:ignore="MissingConstraints">
+
+        </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.CardView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/cat"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="4dp"
+                android:padding="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <android.support.v7.widget.RecyclerView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/categoryView" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+
+
+    <android.support.design.widget.NavigationView
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:itemIconTint="@color/darkgray"
+    app:itemTextColor="@color/darkgray"
+    app:menu="@menu/drawermenu"
+    android:id = "@+id/nav1"
+    android:layout_gravity = "start"
+    app:headerLayout="@layout/header"
+    tools:ignore="MissingConstraints">
+</android.support.design.widget.NavigationView>
+</android.support.v4.widget.DrawerLayout>

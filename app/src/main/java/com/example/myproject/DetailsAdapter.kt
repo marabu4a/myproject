@@ -26,7 +26,7 @@ class DetailsAdapter(array: Array<String>,array1: Array<String>) : RecyclerView.
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val detailTitle = arrayy.get(position)
         val detailAnnot = annot.get(position)
-        Picasso.get().load("file:///android_asset/maincategories/category-" + position.toString() + ".png").into(holder.view.car_detail_image)
+        Picasso.get().load("file:///android_asset/maincategories/category-$position.png").into(holder.view.car_detail_image)
         holder.view.car_detail?.text = detailTitle
         holder.view.annot?.text = detailAnnot
         holder.view.setOnClickListener {

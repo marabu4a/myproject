@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.article.view.*
-import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter
 
 class ContentAdapter(list:List<String>): RecyclerView.Adapter<ContentRecyclerView>() {
     private val temp = list
@@ -24,9 +23,6 @@ class ContentAdapter(list:List<String>): RecyclerView.Adapter<ContentRecyclerVie
         val now = temp[position]
         if (position == 0) {
 
-            holder.view.html_text.setHtml(now, HtmlHttpImageGetter(holder.view.html_text))
-
-            holder.view.html_text.movementMethod = ScrollingMovementMethod()
         }
 
         }

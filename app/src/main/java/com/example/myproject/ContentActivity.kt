@@ -2,6 +2,7 @@ package com.example.myproject
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
@@ -9,32 +10,41 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.text.Html.FROM_HTML_MODE_LEGACY
-import android.text.Html.fromHtml
+import android.text.Html
+import android.text.Html.*
+import android.text.Spannable
+import android.text.method.LinkMovementMethod
 import android.text.method.ScrollingMovementMethod
+import android.text.style.ImageSpan
+import android.text.style.URLSpan
+import android.view.View
 import android.widget.Toast
+import com.example.myproject.AppActivity.Companion.getDatabase
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_content.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_scnd.*
+import kotlinx.android.synthetic.main.article.*
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.sufficientlysecure.htmltextview.HtmlTextView
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import java.io.BufferedInputStream
 import java.io.IOException
 import java.io.InputStream
 import java.lang.ref.WeakReference
 import java.net.MalformedURLException
+import java.sql.Struct
 import java.util.*
 import kotlin.coroutines.CoroutineContext
-
+const val EXTRA_NAME = "titleArticle"
 
 class ContentActivity : AppCompatActivity(),CoroutineScope {
-    val mDrawableCache = Collections.synchronizedMap(WeakHashMap<String, WeakReference<Drawable>>())
+
     private val rootJob = Job()
-    private var repos: Responsee? = null
-    private var article_list: List<String>? = null
-    private var html:HtmlTextView? =null
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + rootJob
 
@@ -42,126 +52,134 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_content)
-        //article_view.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false)
-        jsonParse()
+        val titleArticle = (intent.extras!!.get(EXTRA_NAME) as String).toString()
+        if (isNetworkAvailable()) {
+            jsonParse(titleArticle)
+        }
+        else {
+            getDataFromDatabase(titleArticle)
+            Toast.makeText(applicationContext,"Нет подключения к интернету",Toast.LENGTH_SHORT).show()
+        }
+        val intent = Intent(this,ScndActivity::class.java)
+        nav2.setNavigationItemSelectedListener { menuItem ->
+            menuItem.isChecked = true
+            drawer2.closeDrawers()
+            when (menuItem.itemId) {
+                R.id.engine -> {
+                    intent.putExtra(EXTRA_POS,0)
+                    this.startActivity(intent)
+                }
+                R.id.suspension -> {
+                    intent.putExtra(EXTRA_POS,1)
+                    this.startActivity(intent)
+                }
+                R.id.transmission -> {
+                    intent.putExtra(EXTRA_POS,2)
+                    this.startActivity(intent)
+                }
+                R.id.brakeSystem -> {
+                    intent.putExtra(EXTRA_POS,3)
+                    this.startActivity(intent)
+                }
+                R.id.electric -> {
+                    intent.putExtra(EXTRA_POS,4)
+                    this.startActivity(intent)
+                }
+                R.id.wheel -> {
+                    intent.putExtra(EXTRA_POS,5)
+                    this.startActivity(intent)
+                }
+                R.id.fuel -> {
+                    intent.putExtra(EXTRA_POS,6)
+                    this.startActivity(intent)
+                }
+                R.id.sensors-> {
+                    intent.putExtra(EXTRA_POS,7)
+                    this.startActivity(intent)
+                }
+                R.id.cool-> {
+                    intent.putExtra(EXTRA_POS,8)
+                    this.startActivity(intent)
+                }
+                R.id.igni-> {
+                    intent.putExtra(EXTRA_POS,9)
+                    this.startActivity(intent)
+                }
+            }
+            true
 
 
 
 
+        }
 
+    }
+    interface Callback {
+        fun onImageClick(imageUrl: String?)
+    }
 
+    private fun setClickListenerOnHtmlImageGetter(html: Spannable, callback: Callback) {
+        for (span in html.getSpans(0, html.length, ImageSpan::class.java)) {
+            val flags = html.getSpanFlags(span)
+            val start = html.getSpanStart(span)
+            val end = html.getSpanEnd(span)
 
+            html.setSpan(object : URLSpan(span.source) {
+                override fun onClick(v: View) {
+                    callback.onImageClick(span.source)
+                }
+            }, start, end, flags)
+        }
+    }
 
-
-          //jsonParse()
-            /*doAsync {
-
-
-            val artic = getDatabase()
-            val tt = artic!!.readoutDAO().getReadoutById(0)
-            text_content.append("vvvvvvvvvv")
+    private fun getDataFromDatabase(string: String) {
+        doAsync {
+            val myData = getDatabase()
+            val imageGetter = PicassoImageGetter(texttest,applicationContext)
+            val needArticle = myData!!.readoutDAO().getReadoutByAddr(string)
+            var html: Spannable
             uiThread {
-                text_content.append(tt.text)
-                tt.text = "ggwp"
-                artic.readoutDAO().updateReadout(tt)
-                val vv = artic!!.readoutDAO().getReadoutByAddr("Устройство двигателей внутреннего сгорания")
-
-                text_content.append(vv.text)
-
-            }
-
-
-        }*/
-
-
-
-
-
-
-
-
-    }
-    fun getDrawable(source: String?): Drawable? {
-        Toast.makeText(
-            applicationContext, source,
-            Toast.LENGTH_LONG
-        ).show()
-
-        lateinit var drawable: Drawable
-        if (source!!.startsWith("http")) {
-            // load from internet
-
-            try {
-                val httpClient = OkHttpClient.Builder().build()
-                val request = Request.Builder().url(source).build()
-                val response: InputStream = httpClient.newCall(request).execute().body()!!.byteStream()
-                val bufferedInputStream = BufferedInputStream(response)
-                val bm = BitmapFactory.decodeStream(bufferedInputStream)
-
-                // convert Bitmap to Drawable
-                drawable = BitmapDrawable(resources, bm)
-
-                drawable.setBounds(
-                    0, 0,
-                    bm.width,
-                    bm.height
-                );
-
-            } catch (e: MalformedURLException) {
-                // TODO Auto-generated catch block
-                e.printStackTrace()
-            } catch (e: IOException) {
-                // TODO Auto-generated catch block
-                e.printStackTrace()
-            }
-
-        } else {
-            // load from local drawable
-
-            val dourceId = applicationContext
-                .resources
-                .getIdentifier(source, "drawable", packageName)
-
-            drawable = applicationContext.resources
-                .getDrawable(
-                    dourceId,theme
-                )
-
-            drawable.setBounds(
-                0, 0, drawable.intrinsicWidth,
-                drawable.intrinsicHeight
-            )
-        }
-
-        return drawable
-    }
-
-    fun jsonParse() = launch {
-        val url = "https://my-project-id-326ba.firebaseio.com/Устройство двигателя.json"
-        val client = OkHttpClient.Builder().build()
-        val request = Request.Builder().url(url).build()
-        val response: String = withContext(Dispatchers.IO) {
-            client.newCall(request).execute().body()!!.string()
-        }
-        val type = object : TypeToken<Responsee>() {}
-        val p = URLImageParser(texttest, applicationContext)
-        repos = Gson().fromJson<Responsee>(response, type.type)
-        article_list = listOf(repos!!.title,repos!!.text0,repos!!.text1,repos!!.text2,repos!!.text3,repos!!.text4,repos!!.text5)
-        runOnUiThread {
-            //webtext.loadData(repos!!.text0,"text/html","UTF-8")
-            //rticle_view.adapter = ContentAdapter(article_list!!)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                texttest.text = fromHtml(repos?.text0, FROM_HTML_MODE_LEGACY, p, null)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    html = fromHtml(needArticle.text, FROM_HTML_MODE_LEGACY, imageGetter, null) as Spannable
+                } else {
+                    html = Html.fromHtml(needArticle.text, imageGetter, null) as Spannable
 
                 }
 
+                texttest.text = html
+            }
         }
-        texttest.movementMethod = ScrollingMovementMethod()
+        texttest.movementMethod = LinkMovementMethod()
+    }
+
+    private fun jsonParse(autoTitle: String) = launch {
+        val url = "https://my-project-id-326ba.firebaseio.com/$autoTitle.json"
+        val client = OkHttpClient.Builder().build()
+        val request = Request.Builder().url(url).build()
+        val imageGetter = PicassoImageGetter(texttest,applicationContext)
+        val response: String = withContext(Dispatchers.IO) {
+            client.newCall(request).execute().body()!!.string()
         }
+        val data: StructArt?
+        var html: Spannable? = null
+        val type = object : TypeToken<StructArt>() {}
+        //val myData = getDatabase()
+        //val needArticles = myData?.readoutDAO()?.getReadoutByAddr(autoTitle)
+        data = Gson().fromJson<StructArt>(response, type.type)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            html = fromHtml(data.text, FROM_HTML_OPTION_USE_CSS_COLORS, imageGetter, null) as Spannable
+        }
+
+            texttest.text = html
+        texttest.movementMethod = LinkMovementMethod.getInstance()
+        }
+
+
     @SuppressLint("MissingPermission")
      fun isNetworkAvailable(): Boolean {
         val cm = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        return if (cm is ConnectivityManager) {
+        return if (true) {
             val activeNetwork = cm.activeNetworkInfo
             activeNetwork?.isConnected ?: false
         } else false
@@ -169,9 +187,8 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
 
 
 
-
-            }
-data class Responsee(val text0: String,val text1: String,val text2: String,val text3: String,val text4: String,val text5: String,val title: String)
+}
+data class StructArt(val title:String, val text:String)
 
 
 

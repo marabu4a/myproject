@@ -66,7 +66,7 @@ class DatabaseCopier private constructor() {
 
     companion object {
         private val TAG = DatabaseCopier::class.java.simpleName
-        private const val DATABASE_NAME = "autoarticlesss1.db"
+        private const val DATABASE_NAME = "DBAutoArticles1.db"
         private var appContext: Context? = null
 
         fun getInstance(context: Context): DatabaseCopier {

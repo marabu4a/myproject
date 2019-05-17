@@ -3,11 +3,11 @@
 	<string-array name="articlesSuspension">
 		<item>Общее устройство подвески</item>
 		<item>Амортизатор</item>
-		<item>Пружины</item>
+		<item>Автомобильные пружины</item>
 		<item>Стабилизатор поперечной устойчивости</item>
 		<item>Втулка стабилизатора</item>
-		<item>Ступица</item>
-		<item>Все о дисках</item>
+		<item>Ступица колеса</item>
+		<item>Автомобильные диски</item>
 		<item>Летняя и зимняя резина</item>
 	</string-array>
 </resources>

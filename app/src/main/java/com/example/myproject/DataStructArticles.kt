@@ -23,8 +23,7 @@ class AppActivity: Application() {
     data class StructArticles(
         @PrimaryKey(autoGenerate = true) var id: Int = 0,
         @ColumnInfo(name = "title") var title: String?,
-        @ColumnInfo(name = "text") var text: String?,
-        @ColumnInfo(name = "image") var image: String?
+        @ColumnInfo(name = "text") var text: String?
     )
     @Dao
     interface ReadoutModelDao {
@@ -38,13 +37,13 @@ class AppActivity: Application() {
         fun getReadoutByAddr(title: String): StructArticles
 
         @Insert(onConflict = OnConflictStrategy.REPLACE)
-        fun addReadout(readoutModel: StructArticles)
+        fun addReadout(readoutModel: StructArticles?)
 
         @Update
-        fun updateReadout(readoutModel: StructArticles)
+        fun updateReadout(readoutModel: StructArticles?)
 
         @Delete
-        fun deleteReadout(readoutModel: StructArticles)
+        fun deleteReadout(readoutModel: StructArticles?)
     }
     @Database(
         entities = [StructArticles::class],

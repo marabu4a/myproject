@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.content.Intent
+import android.content.Intent.EXTRA_TITLE
 import kotlinx.android.synthetic.main.category_details.view.*
 
 class DetailsCategoryAdapter(val articlesList: Array<String>?) : RecyclerView.Adapter<DetailsViewHolder>() {
@@ -26,6 +27,7 @@ class DetailsCategoryAdapter(val articlesList: Array<String>?) : RecyclerView.Ad
         holder.view.setOnClickListener {
 
         val intent = Intent(holder.view.context,ContentActivity::class.java)
+            intent.putExtra(EXTRA_NAME,articlesList!![position])
         holder.view.context.startActivity(intent)
         }
 

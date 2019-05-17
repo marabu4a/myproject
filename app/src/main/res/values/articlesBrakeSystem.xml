@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="articlesBrakeSystem">
-	<item>Устройство тормоной системы</item>
+	<item>Устройство тормозной системы</item>
 	<item>Принцип работы тормозной системы</item>
 	<item>Антиблокировочная система(ABS)</item>
 	<item>Противобуксовочная система(TCS)</item>
-	<item>Тормозные колодки</item>
-	<item>Тормозные диски</item>
+	<item>Тормозные колодки и диски</item>
 	<item>Электронный контроль устойчивости(ESP)</item>
 	<item>Система курсовой устойчивости(ESC)</item>
 	<item>Антипробуксовочная система(ASR)</item>
-	<item>Стояночная тормозная система</item>
+	<item>Стояночный тормоз</item>
 	</string-array>
 </resources>
