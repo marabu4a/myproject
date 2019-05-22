@@ -48,18 +48,7 @@ class PicassoImageGetter(internal var container: View, private var c: Context) :
             c.windowManager.defaultDisplay.getMetrics(displayMetrics)
             val width = 0 + drawable!!.intrinsicWidth + 400
             val height = 0+ drawable.intrinsicHeight + 400
-            /*val defaultWidth = drawable?.intrinsicWidth
-            val defaultHeight = drawable?.intrinsicHeight
-            val defaultProportion: Float = (defaultWidth!! / defaultHeight!!).toFloat()
-            val width = Math.min((container.texttest.width),defaultWidth)
-            val height = (width / defaultProportion).toInt()
-                //if ((bounds.right != container.texttest.width || bounds.bottom != height)) {
-                setBounds(0,0,container.texttest.width,height)
-                val halfOfPlaceHolderWidth = (bounds.right.toFloat() / 2f).toInt()
-                val halfOfImageWidth = (width.toFloat() / 2f).toInt()
-                drawable.setBounds(halfOfPlaceHolderWidth-halfOfImageWidth,0,halfOfPlaceHolderWidth+halfOfImageWidth,height)
-                container.texttest.text = container.texttest.text*/
-            //}
+
             if (width <= container.texttest.width) {
                 drawable.setBounds(0, 0, width, height)
                 setBounds(0, 0, width, height)

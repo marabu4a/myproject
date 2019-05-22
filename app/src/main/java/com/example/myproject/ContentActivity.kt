@@ -141,11 +141,14 @@ class ContentActivity : AppCompatActivity(),CoroutineScope {
         val data: StructArt?
         var html: Spannable? = null
         val type = object : TypeToken<StructArt>() {}
+
         val myData = getDatabase()
         val needArticles = myData?.readoutDAO()?.getReadoutByAddr(autoTitle)
+
         data = Gson().fromJson<StructArt>(response, type.type)
         needArticles!!.text = data.text
         myData.readoutDAO().updateReadout(needArticles)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             html = fromHtml(data.text, FROM_HTML_OPTION_USE_CSS_COLORS, imageGetter, null) as Spannable
         }

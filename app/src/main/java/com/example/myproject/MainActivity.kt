@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         drawerToggle.isDrawerIndicatorEnabled = true
         drawer.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
+
         actionBar?.setDefaultDisplayHomeAsUpEnabled(true)
         val categories = applicationContext.resources.getStringArray(R.array.categories)
         val categoriesannot = applicationContext.resources.getStringArray(R.array.categoriesAnnotation)
@@ -57,6 +58,8 @@ class MainActivity : AppCompatActivity() {
         list.adapter = adapter
         list.hasFixedSize()
         list.background = ColorDrawable(Color.BLUE)
+
+
         val intent = Intent(this,ScndActivity::class.java)
         nav.setNavigationItemSelectedListener { menuItem ->
                 menuItem.isChecked = true
@@ -127,22 +130,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
-    /*override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (mToggle!!.onOptionsItemSelected(item)) {
-            return true
-        }
-
-
-        /*return when (item!!.itemId) {
-            android.R.id.home -> {
-                drawer.openDrawer(GravityCompat.START)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }*/
-        return super.onOptionsItemSelected(item)
-    }*/
 
 
 

@@ -57,9 +57,10 @@ class ScndActivity : AppCompatActivity() {
 
             override fun onDrawerOpened(drawerView: View){
                 super.onDrawerOpened(drawerView)
-                //toast("Drawer opened")
             }
         }
+
+        
         actionBar?.setDefaultDisplayHomeAsUpEnabled(true)
         drawerToggle.isDrawerIndicatorEnabled = true
         drawer1.addDrawerListener(drawerToggle)
