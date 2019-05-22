@@ -2,10 +2,9 @@
 <resources>
 		<string-array name="articlesCoolingSystem">
 			<item>Устройство системы охлаждения</item>
-			<item>Радиатор охлаждения</item>
 			<item>Термостат</item>
 			<item>Расширительный бачок</item>
 			<item>Центробежный насос</item>
-			<item>Вентилятор радиатора</item>
+			<item>Вентилятор системы охлаждения</item>
 		</string-array>
 </resources>

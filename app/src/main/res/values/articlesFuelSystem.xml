@@ -2,12 +2,12 @@
 <resources>
 	<string-array name="articlesFuelSystem">
 		<item>Принцип работы топливных систем</item>
-		<item>Датчик уровня топлива</item>
-		<item>Топливный бак,фильтр и насос</item>
+		<item>Топливный бак</item>
+		<item>Топливный фильтр</item>
 		<item>Адсорбер</item>
 		<item>Топливные форсунки</item>
 		<item>Дроссельная заслонка</item>
-		<item>Система курсовой устойчивости(ESC)</item>
 		<item>Система впрыска топлива</item>
+		<item>Топливный насос</item>
 	</string-array>
 </resources>

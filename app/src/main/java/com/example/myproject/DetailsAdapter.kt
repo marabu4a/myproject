@@ -31,9 +31,10 @@ class DetailsAdapter(array: Array<String>,array1: Array<String>) : RecyclerView.
         holder.view.annot?.text = detailAnnot
         holder.view.setOnClickListener {
 
-                val intent = Intent(holder.view.getContext(),ScndActivity::class.java)
+                val intent = Intent(holder.view.context,ScndActivity::class.java)
                 intent.putExtra(EXTRA_POS,position)
-                holder.view.getContext().startActivity(intent)
+                intent.putExtra(EXTRA_TITLE,arrayy.get(position))
+                holder.view.context.startActivity(intent)
         }
     }
 }

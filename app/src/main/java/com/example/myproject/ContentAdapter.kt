@@ -21,12 +21,7 @@ class ContentAdapter(list:List<String>): RecyclerView.Adapter<ContentRecyclerVie
 
     override fun onBindViewHolder(holder: ContentRecyclerView, position: Int) {
         val now = temp[position]
-        if (position == 0) {
-
         }
-
-        }
-
     }
 
 

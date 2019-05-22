@@ -37,10 +37,8 @@ class DatabaseCopier private constructor() {
             return
         }
 
-        // Make sure we have a path to the file
         dbPath.parentFile.mkdirs()
 
-        // Try to copy database file
         try {
             val inputStream = context.assets.open("databases/$databaseName")
             val output = FileOutputStream(dbPath)
@@ -66,7 +64,7 @@ class DatabaseCopier private constructor() {
 
     companion object {
         private val TAG = DatabaseCopier::class.java.simpleName
-        private const val DATABASE_NAME = "DBAutoArticles1.db"
+        private const val DATABASE_NAME = "FinalDB1.db"
         private var appContext: Context? = null
 
         fun getInstance(context: Context): DatabaseCopier {

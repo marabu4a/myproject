@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main)
         super.onCreate(savedInstanceState)
-        //val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar2)
         val actionBar = supportActionBar
         actionBar?.title = "Устройство автомобиля"
@@ -41,21 +40,15 @@ class MainActivity : AppCompatActivity() {
         ){
             override fun onDrawerClosed(view: View){
                 super.onDrawerClosed(view)
-                //toast("Drawer closed")
             }
 
             override fun onDrawerOpened(drawerView: View){
                 super.onDrawerOpened(drawerView)
-                //toast("Drawer opened")
             }
         }
         drawerToggle.isDrawerIndicatorEnabled = true
         drawer.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
-        //mToggle = ActionBarDrawerToggle(this,drawer,R.string.open,R.string.close)
-        //val mToggle = ActionBarDrawerToggle(this,drawer,R.string.open,R.string.close)
-        //drawer.addDrawerListener(mToggle!!)
-        //mToggle!!.syncState()
         actionBar?.setDefaultDisplayHomeAsUpEnabled(true)
         val categories = applicationContext.resources.getStringArray(R.array.categories)
         val categoriesannot = applicationContext.resources.getStringArray(R.array.categoriesAnnotation)
@@ -70,42 +63,52 @@ class MainActivity : AppCompatActivity() {
                 drawer.closeDrawers()
                 when (menuItem.itemId) {
                     R.id.engine -> {
+                        intent.putExtra(EXTRA_TITLE,"Двигатель")
                         intent.putExtra(EXTRA_POS,0)
                         this.startActivity(intent)
                     }
                     R.id.suspension -> {
+                        intent.putExtra(EXTRA_TITLE,"Подвеска")
                         intent.putExtra(EXTRA_POS,1)
                         this.startActivity(intent)
                     }
                     R.id.transmission -> {
+                        intent.putExtra(EXTRA_TITLE,"Трансмиссия")
                         intent.putExtra(EXTRA_POS,2)
                         this.startActivity(intent)
                     }
                     R.id.brakeSystem -> {
+                        intent.putExtra(EXTRA_TITLE,"Тормозная система")
                         intent.putExtra(EXTRA_POS,3)
                         this.startActivity(intent)
                     }
                     R.id.electric -> {
+                        intent.putExtra(EXTRA_TITLE,"Электрооборудование")
                         intent.putExtra(EXTRA_POS,4)
                         this.startActivity(intent)
                     }
                     R.id.wheel -> {
+                        intent.putExtra(EXTRA_TITLE, "Рулевое управление")
                         intent.putExtra(EXTRA_POS,5)
                         this.startActivity(intent)
                     }
                     R.id.fuel -> {
+                        intent.putExtra(EXTRA_TITLE,"Топливная система")
                         intent.putExtra(EXTRA_POS,6)
                         this.startActivity(intent)
                     }
                     R.id.sensors-> {
+                        intent.putExtra(EXTRA_TITLE,"Датчики")
                         intent.putExtra(EXTRA_POS,7)
                         this.startActivity(intent)
                     }
                     R.id.cool-> {
+                        intent.putExtra(EXTRA_TITLE,"Система охлаждения")
                         intent.putExtra(EXTRA_POS,8)
                         this.startActivity(intent)
                     }
                     R.id.igni-> {
+                        intent.putExtra(EXTRA_TITLE, "Система зажигания")
                         intent.putExtra(EXTRA_POS,9)
                         this.startActivity(intent)
                     }

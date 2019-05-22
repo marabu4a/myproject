@@ -18,7 +18,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ContentActivity">
+        <activity android:name=".ContentActivity"
+            android:theme="@style/AppTheme.TransparentTheme">
         </activity>
         <activity
                 android:name=".ScndActivity"

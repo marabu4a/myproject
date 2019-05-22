@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="articlesElectric">
-		<item>Аккумулятор</item>
-		<item>Стартер</item>
-		<item>Генератор</item>
+		<item>Аккумуляторная батарея</item>
+		<item>Стартер автомобиля</item>
+		<item>Генератор автомобильный</item>
 		<item>Автомобильный свет</item>
 		<item>Бортовой компьютер</item>
 		<item>Подушки безопасности</item>

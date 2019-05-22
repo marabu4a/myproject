@@ -10,23 +10,23 @@ import android.graphics.Canvas
 import android.support.constraint.solver.widgets.WidgetContainer
 import android.widget.TextView
 import android.text.Html
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_content.view.*
 import org.jetbrains.anko.displayManager
 import org.jetbrains.anko.displayMetrics
+import org.jetbrains.anko.windowManager
 
 
 class PicassoImageGetter(internal var container: View, private var c: Context) : Html.ImageGetter {
-   // private var textView: TextView? = target
-    //internal var mContext: Context = context
+
     override fun getDrawable(source: String?): Drawable? {
 
         val drawable = BitmapDrawablePlaceHolder()
         Log.d("Activity", source)
        Log.d("Activity", drawable.toString())
-           //Picasso.get().load(source).placeholder(R.drawable.s1200).into(drawable)
         PicassoCache.getPicassoInstance(c)?.load(source)?.error(R.drawable.s1200)?.into(drawable)
         return drawable
 
@@ -44,6 +44,8 @@ class PicassoImageGetter(internal var container: View, private var c: Context) :
 
         fun setDrawable(drawable: Drawable?) {
             this.draw = drawable
+            val displayMetrics = DisplayMetrics()
+            c.windowManager.defaultDisplay.getMetrics(displayMetrics)
             val width = 0 + drawable!!.intrinsicWidth + 400
             val height = 0+ drawable.intrinsicHeight + 400
             /*val defaultWidth = drawable?.intrinsicWidth
@@ -58,9 +60,14 @@ class PicassoImageGetter(internal var container: View, private var c: Context) :
                 drawable.setBounds(halfOfPlaceHolderWidth-halfOfImageWidth,0,halfOfPlaceHolderWidth+halfOfImageWidth,height)
                 container.texttest.text = container.texttest.text*/
             //}
-            drawable.setBounds(0, 0, width, height)
-            setBounds(0, 0, width, height)
-                //this@PicassoImageGetter.container.invalidate()
+            if (width <= container.texttest.width) {
+                drawable.setBounds(0, 0, width, height)
+                setBounds(0, 0, width, height)
+            }
+            else {
+                drawable.setBounds(0,0,drawable!!.intrinsicWidth,drawable.intrinsicHeight)
+                setBounds(0,0,drawable!!.intrinsicWidth,drawable.intrinsicHeight)
+            }
             if (container.texttest.text != null) {
                 container.texttest.text = container.texttest.text
             }

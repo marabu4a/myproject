@@ -3,8 +3,9 @@
 	<string-array name="articlesSteeringWheel">
 		<item>Электроусилитель руля</item>
 		<item>Гидроусилитель руля</item>
-		<item>Рулевое упраление</item>
+		<item>Рулевое управление</item>
 		<item>Устройство рулевой колонки</item>
 		<item>Активное рулевое управление(AFS)</item>
+		<item>Электрогидравлический усилитель руля(ЭГУР)</item>
 	</string-array>
 </resources>
